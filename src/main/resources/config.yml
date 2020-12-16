@@ -1,0 +1,9 @@
+# Put the names of your servers under the "servers" tag.
+# Each server can have many aliases in its list.
+servers:
+  server:
+    - "server"
+    - "nr1"
+  server2:
+    - "server2"
+    - "nr2"
