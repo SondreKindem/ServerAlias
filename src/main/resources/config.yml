@@ -1,8 +1,27 @@
+
+############
+# Messages #
+############
+
+# Should the plugin send messages on join? This disables all messages, like join-msg
+enable-messages: true
+
+# A message that is sent to players when they connect to the network. The "|-" symbol lets us write multiple lines.
+# Use § as color prefix, i.e. §6 for gold
+join-msg: |-
+  Hey there! Welcome to the server.
+  Hope you have a good time :)
+
+###########
+# Aliases #
+###########
+
+# Here you can specify custom commands for connecting to your different servers
 # Put the names of your servers under the "servers" tag.
 # Each server can have many aliases in its list.
 servers:
   server:
-    - "server"
+    - "server1"
     - "nr1"
   server2:
     - "server2"

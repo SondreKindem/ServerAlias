@@ -13,13 +13,18 @@ import java.io.*;
 import java.util.Collection;
 
 public class ServerAlias extends Plugin {
+
     private Configuration config;
 
     @Override
     public void onEnable() {
-        this.loadConfig();
+        loadConfig();
 
-        this.registerCommands();
+        if (config.getBoolean("enable-messages")) {
+            registerListeners();
+        }
+
+        registerCommands();
     }
 
     /**
@@ -54,6 +59,10 @@ public class ServerAlias extends Plugin {
             getLogger().severe("Error while trying to load the config!");
             throw new RuntimeException("Could not load the config!", e);
         }
+    }
+
+    private void registerListeners() {
+        getProxy().getPluginManager().registerListener(this, new Events(config));
     }
 
     private void registerCommands() {
