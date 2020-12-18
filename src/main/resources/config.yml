@@ -1,4 +1,3 @@
-
 ############
 # Messages #
 ############
@@ -11,6 +10,14 @@ enable-messages: true
 join-msg: |-
   Hey there! Welcome to the server.
   Hope you have a good time :)
+
+# A message specific for a server.
+# To disable for one server, simply don't include that server in the list. Do disable for all, don't put any servers here
+server-join-msg:
+  server: |-
+    Hey welcome to server 1!
+  server2: |-
+    Yo, you are now on server 2!!!
 
 ###########
 # Aliases #

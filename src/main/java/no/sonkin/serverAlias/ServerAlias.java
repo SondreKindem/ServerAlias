@@ -8,6 +8,7 @@ import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import no.sonkin.serverAlias.commands.AliasCommand;
+import no.sonkin.serverAlias.commands.ReloadCommand;
 
 import java.io.*;
 import java.util.Collection;
@@ -15,10 +16,13 @@ import java.util.Collection;
 public class ServerAlias extends Plugin {
 
     private Configuration config;
+    private Events eventsListener;
 
     @Override
     public void onEnable() {
         loadConfig();
+
+        this.eventsListener = new Events(config);
 
         if (config.getBoolean("enable-messages")) {
             registerListeners();
@@ -62,7 +66,14 @@ public class ServerAlias extends Plugin {
     }
 
     private void registerListeners() {
-        getProxy().getPluginManager().registerListener(this, new Events(config));
+        getProxy().getPluginManager().registerListener(this, eventsListener);
+    }
+
+    public void reload() {
+        getProxy().getPluginManager().unregisterListener(eventsListener);
+        this.loadConfig();
+        this.eventsListener = new Events(config);
+        getProxy().getPluginManager().registerListener(this, eventsListener);
     }
 
     private void registerCommands() {
@@ -76,6 +87,8 @@ public class ServerAlias extends Plugin {
                     ProxyServer.getInstance().getPluginManager().registerCommand(this, new AliasCommand((String) alias, server));
                 }
             }
+
+            ProxyServer.getInstance().getPluginManager().registerCommand(this, new ReloadCommand(this));
         }
     }
 }
