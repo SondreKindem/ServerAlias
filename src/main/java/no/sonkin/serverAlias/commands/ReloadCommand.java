@@ -16,8 +16,12 @@ public class ReloadCommand extends Command {
 
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
-        commandSender.sendMessage(new ComponentBuilder("Reloading config...").color(ChatColor.RED).create());
-        serverAliasInstance.reload();
-        commandSender.sendMessage(new ComponentBuilder("Config reloaded.").color(ChatColor.RED).create());
+        if (commandSender.hasPermission("bungeeutils.reload")) {
+            commandSender.sendMessage(new ComponentBuilder("Reloading config...").color(ChatColor.RED).create());
+            serverAliasInstance.reload();
+            commandSender.sendMessage(new ComponentBuilder("Config reloaded.").color(ChatColor.RED).create());
+        } else {
+            commandSender.sendMessage(new ComponentBuilder("You do not have permission to reload the config.").color(ChatColor.RED).create());
+        }
     }
 }
