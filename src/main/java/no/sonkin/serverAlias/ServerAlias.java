@@ -19,6 +19,7 @@ TODO: add custom rules command - let admin specify general rules & also server s
 TODO: add custom info command module - Let admin define commands that return defined info
  */
 
+@SuppressWarnings({"ResultOfMethodCallIgnored", "UnstableApiUsage"})
 public class ServerAlias extends Plugin {
 
     private Configuration config;
