@@ -13,6 +13,12 @@ import no.sonkin.serverAlias.commands.ReloadCommand;
 import java.io.*;
 import java.util.Collection;
 
+/*
+TODO: add conditional spawning - if player is in a server portal, spawn at server spawn instead of inside the portal
+TODO: add custom rules command - let admin specify general rules & also server specific rules. Let player click text to see server specific rules if server not specified in command
+TODO: add custom info command module - Let admin define commands that return defined info
+ */
+
 public class ServerAlias extends Plugin {
 
     private Configuration config;
